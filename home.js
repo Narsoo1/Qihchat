@@ -81,12 +81,12 @@ document.getElementById("searchInputBtn").onclick = async () => {
   searchResults.innerHTML = "";
   if (!val) return;
   
-  const q = query(
-    collection(db, "users"),
-    where("username", ">=", val),
-    where("username", "<=", val + "\uf8ff")
-  );
-  const snap = await getDocs(q);
+  const res = await fetch("https://qihchat-api.repl.co/search", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ keyword: val })
+});
+const data = await res.json();
   
   if (snap.empty) {
     searchResults.innerHTML = "<div style='color:gray;padding:10px'>Username tidak ditemukan</div>";
@@ -354,4 +354,4 @@ searchBtn.onclick = () => {
   if (!keyword) return;
   const query = encodeURIComponent(keyword);
   resultFrame.src = `https://www.bing.com/search?q=${query}`;
-}
+  }
