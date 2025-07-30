@@ -4,7 +4,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 import {
   getFirestore, collection, doc, getDocs, getDoc, query, where,
-  setDoc, deleteDoc, updateDoc, arrayRemove, onSnapshot
+  setDoc, deleteDoc, updateDoc, arrayRemove, onSnapshot, orderBy, limit
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 // Firebase setup
@@ -23,7 +23,7 @@ const closePopup = document.getElementById("closePopup");
 const menuPopup = document.getElementById("menuPopup");
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 const logoutBtn = document.getElementById("logoutBtn");
-const searchUserBtn = document.getElementById("searchUserBtn");
+const searchUserBtn = document.getElementById("searchUser Btn"); // Perbaikan di sini
 const searchPopup = document.getElementById("searchPopup");
 const searchInput = document.getElementById("searchInput");
 const searchResults = document.getElementById("searchResults");
@@ -48,7 +48,6 @@ const searchBar = document.getElementById("searchBar");
 const searchBtn = document.getElementById("searchBtn");
 const resultFrame = document.getElementById("resultFrame");
 
-
 let currentUsername = "";
 let selectedChatId = null;
 let selectedArchivedChatId = null;
@@ -58,6 +57,7 @@ themeToggleBtn.onclick = () => {
   document.body.classList.toggle("light");
   localStorage.setItem("theme", document.body.classList.contains("light") ? "light" : "dark");
 };
+
 (function applyTheme() {
   if (localStorage.getItem("theme") === "light") document.body.classList.add("light");
 })();
@@ -71,21 +71,25 @@ logoutBtn.onclick = () => signOut(auth).then(() => location.href = "login.html")
 searchUserBtn.onclick = () => {
   searchPopup.style.display = "block";
 };
+
 closeSearchPopup.onclick = () => {
   searchPopup.style.display = "none";
   searchInput.value = "";
   searchResults.innerHTML = "";
 };
+
 document.getElementById("searchInputBtn").onclick = async () => {
   const val = searchInput.value.trim().toLowerCase();
   searchResults.innerHTML = "";
   if (!val) return;
-  
+
   const q = query(
     collection(db, "users"),
     where("username", ">=", val),
-    where("username", "<=", val + "\uf8ff")
+    where("username", "<=", val + "\uf8ff"),
+    limit(10) // Batasi hasil pencarian
   );
+  
   const snap = await getDocs(q);
   
   if (snap.empty) {
@@ -237,7 +241,7 @@ confirmDelete.onclick = async () => {
 confirmArchive.onclick = async () => {
   if (!selectedChatId) return;
   await updateDoc(doc(db, "chats", selectedChatId), {
-    archivedBy: [currentUsername]
+    archivedBy: arrayRemove(currentUsername)
   });
   customConfirm.style.display = "none";
   selectedChatId = null;
@@ -342,7 +346,6 @@ btnDeleteArchive.onclick = async () => {
 openBrowserBtn.onclick = () => {
   menuPopup.style.display = "none";
   browserPopup.style.display = "flex";
-  searchBar.block();
 };
 closeBrowserPopup.onclick = () => {
   browserPopup.style.display = "none";
@@ -354,4 +357,4 @@ searchBtn.onclick = () => {
   if (!keyword) return;
   const query = encodeURIComponent(keyword);
   resultFrame.src = `https://www.bing.com/search?q=${query}`;
-  }
+                       }
