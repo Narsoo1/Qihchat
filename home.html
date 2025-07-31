@@ -31,10 +31,10 @@
     </div>
     <div class="popup-body">
       <button id="searchUserBtn">Cari Username</button>
+            <button id="editprofilBtn">edit profil</button>
       <button id="archiveBtn">Arsip Chat</button>
       <button id="themeToggleBtn">oreo</button>
       <button id="logoutBtn">Logout</button>
-      <button id="openBrowserBtn">Buka Browser</button>
     </div>
     <div class="popup-footer">
       <a href="https://instagram.com/qih_stark" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -90,20 +90,30 @@
     </div>
   </div>
   
-  <!-- Popup Browser -->
-  <div id="browserPopup" class="popup">
-    <div class="popup-header">
-      <div class="popup-title">Mini Browser</div>
-      <button id="closeBrowserPopup" class="menu-btn"><i class="fas fa-times"></i></button>
-    </div>
-    <div class="popup-body">
-      <div class="search-input-wrapper">
-        <input id="searchBar" type="text" placeholder="Cari sesuatu..." />
-        <button id="searchBtn"><i class="fas fa-search"></i></button>
-      </div>
-      <iframe id="resultFrame" class="browser-frame"></iframe>
-    </div>
+<div id="editprofilPopup" class="popup" style="display: none;">
+  <div class="popup-header">
+    <div class="popup-title">Edit Profil</div>
+    <button id="closeeditprofil" class="menu-btn"><i class="fas fa-times"></i></button>
   </div>
+  
+  <div class="popup-body editprofil-body">
+    <div class="centered">
+      <label for="profilePicInput" class="upload-label">
+        <img id="previewProfilePic" src="default.jpg" alt="Foto Profil" class="profile-preview" />
+        <div class="upload-text">Klik untuk ganti foto</div>
+      </label>
+    </div>
+    
+    <input type="file" id="profilePicInput" accept="image/*" style="display: none;" />
+    
+    <input type="text" id="editUsername" placeholder="Username" class="input-field" />
+    <textarea id="editBio" placeholder="Bio singkat..." class="input-field" rows="3"></textarea>
+    
+    <button id="saveProfileBtn" class="edit-profile-btn">Simpan</button>
+  </div>
+</div>
+<div id="notifUpdate" class="notif" style="display:none;">Notifikasi</div>
+    
   
   <!-- JS -->
   <script type="module" src="home.js"></script>
