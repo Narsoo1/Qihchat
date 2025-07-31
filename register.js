@@ -57,7 +57,7 @@
       });
 
       await sendEmailVerification(user, {
-  url: 'https://qih1.vercel.app/verifikasi.html', // 
+  url: 'https://qihchat.vercel.app/verifikasi.html', // 
   handleCodeInApp: true
 });
 
