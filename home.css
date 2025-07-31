@@ -341,130 +341,76 @@ body:not(.light), body:not(.light) * {
   cursor: pointer;
   flex: 1;
 }
-/* ===================== BROWSER POPUP ===================== */
-#browserPopup .popup-body {
-  padding: 16px;
-  background-color: var(--bg-body);
-}
-
-.search-input-wrapper {
-  position: relative;
-  width: calc(100% - 32px);
-  margin: 24px auto 0 auto;
-}
-
-#searchBar {
-  width: 100%;
-  padding: 12px 48px 12px 16px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--box-color);
-  color: var(--text-main);
-  box-shadow: var(--shadow-soft);
-  transition: box-shadow 0.3s ease;
-}
-
-#searchBar::placeholder {
-  color: #9ca3af;
-}
-
-#searchBar:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px #3b82f6;
-}
-
-#searchBtn {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: var(--text-main);
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.browser-frame {
-  flex: 1;
-  height: calc(100vh - 140px); /* 60px header + 20px padding + 60px input */
-  border: none;
-  border-radius: 8px;
-  background-color: var(--bg-body);
-  box-shadow: var(--shadow-soft);
-  width: 100%;
-}
-.search-input-wrapper {
-  position: relative;
-  width: calc(100% - 32px); /* biar pas dengan padding 16px kiri-kanan */
-  margin: 1px auto 0 auto;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-
-#searchBar {
-  width: 100%;
-  padding: 12px 44px 12px 16px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  background-color: var(--box-color);
-  color: var(--text-main);
-  box-shadow: var(--shadow-soft);
-  box-sizing: border-box;
-}
-
-#searchBar::placeholder {
-  color: #9ca3af;
-}
-
-#searchBtn {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: var(--text-main);
-  font-size: 18px;
-  cursor: pointer;
-  padding: 0;
-}
-body.no-scroll {
-  position: fixed;
-  overflow: hidden;
-  width: 100%;
-  height: 100vh;
-}
-
-#browserPopup {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: var(--bg-body);
-  z-index: 9999;
-  display: none;
-  flex-direction: column;
-}
-
-#browserPopup .popup-header {
-  position: sticky; /* atau fixed */
-  top: 0;
-  z-index: 100;
-  background-color: var(--bg-header);
-  padding: 0 16px;
-  height: 60px;
+/* Hanya untuk popup Edit Profil */
+.editprofil-body {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid var(--border-line);
+  justify-content: start;
+  padding: 20px;
 }
 
-#browserPopup .popup-body {
-  flex: 1;
-  overflow: hidden;
+.upload-label {
   display: flex;
   flex-direction: column;
-  padding: 0 16px;
-  padding-top: 20px;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 20px;
 }
+
+.profile-preview {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent, #4CAF50);
+  background-color: #f0f0f0;
+}
+
+.upload-text {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--text, #555);
+}
+
+.input-field {
+  width: 90%;
+  max-width: 400px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: transparent;
+  color: inherit;
+  caret-color: inherit;
+}
+
+/* Untuk light mode */
+body.light input.input-field,
+body.light textarea.input-field {
+  color: #000 !important;        /* Warna teks hitam */
+  background-color: #fff !important;        /* Background putih */
+  caret-color: #000 !important;  /* Warna kursor hitam */
+}
+
+/* Untuk dark mode */
+body.dark input.input-field,
+body.dark textarea.input-field {
+  color: #fff !important;        /* Warna teks putih */
+  background-color: #222 !important;        /* Background gelap */
+  caret-color: #fff !important;  /* Warna kursor putih */
+}
+.notif {
+  position: fixed;
+  bottom: 60px; /* Naik lebih tinggi */
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent; /* Tanpa background */
+  color: var(--text-color);
+  font-weight: 700; /* Lebih tebal */
+  font-size: 16px;  /* Ukuran tulisan */
+  padding: 12px 24px;
+  border-radius: 8px;
+  z-index: 9999;
+  text-align: center;
+  }
