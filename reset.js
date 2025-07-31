@@ -41,7 +41,7 @@
 
       try {
         const actionCodeSettings = {
-  url: 'https://Qihchat.vercel.app/password.html',
+  url: 'https://qihchat.vercel.app/password.html',
   handleCodeInApp: true
 };
 await sendPasswordResetEmail(auth, email, actionCodeSettings);
